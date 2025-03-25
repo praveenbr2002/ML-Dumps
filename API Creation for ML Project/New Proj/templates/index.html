@@ -1,0 +1,79 @@
+<!-- Basic Sample to other HTML Pages -->
+{% extends 'base.html'%}
+<!-- MACROS Imports -->
+{% from 'macro.html' import flash %}
+
+<!-- Title -->
+{% block title %} Index Pic Uploader{%endblock%}
+
+<!-- Jumbo Header -->
+{% block jumpo_title%} 
+
+    <h1>Pictures Uploader</h1>
+            
+    <!-- Flash -->
+    {{flash()}}
+{% endblock%}
+
+<!-- Jumbo Text -->
+{% block jumbo_text%} 
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <!-- File Upload-->
+        <div class="form-group">
+            <label for="inputFile">File input</label>
+            <input class="form-control-file" type="file" name="inputFile">
+        </div>
+
+        <!-- Submit -->        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
+
+<!-- Jumbo Subtext -->
+{% block jumbo_content%} 
+{%if all_pic%}
+    <div  class="d-flex justify-content-center">
+        <div class="card" style="width: 50%;">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+
+                    <!-- First Picture, Must be rendered Outside the For Look because
+                    of bootstrap class 'class="carousel-item active". That needs to be displayed separate -->
+                    <div class="carousel-item active">
+                        <img class="card-img-top" src="data:;base64,{{all_pic[0].rendered_data}}" alt="WOOW">
+                        <div class="card-body">
+                            <!-- Pic Name -->    
+                            <h2>               
+                                <a class="card-title" href="{{url_for('pic', pic_id=all_pic[0].id)}}">{{all_pic[0].name|capitalize}}</a>
+                                <!-- Location Badge -->
+                                <span class="badge badge-secondary">{{all_pic[0].location|capitalize}}</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <!-- All other Pictures are displayed in this For loop  -->
+                    {% for pic in all_pic[1:]%}          
+                        <div class="carousel-item ">
+                            <img class="card-img-top" src="data:;base64,{{pic.rendered_data}}" alt="WOOW"> 
+                            <div class="card-body">
+                                <!-- Pic Name -->    
+                                <h2>               
+                                    <a class="card-title" href="{{url_for('pic', pic_id=pic.id)}}">{{pic.name|capitalize}}</a>
+                                    <!-- Location Badge -->
+                                    <span class="badge badge-secondary">{{pic.location|capitalize}}</span>
+                                </h2>           
+                            </div>
+                        </div>        
+                    {% endfor %}
+                </div>       
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock%}
+
+<!-- Jumbo BTN  -->
+{% block jumbo_btn %}
+
+
+{% endblock%}

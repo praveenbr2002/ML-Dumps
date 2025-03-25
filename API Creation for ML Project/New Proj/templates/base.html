@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <title>{% block title%} {% endblock%}</title>
+    </head>
+    <body>
+        
+        <!-- Nav Bar -->
+        <!-- Body -->
+        <div class="row ">
+
+            <!-- Side Bar -->
+            <div class="col-sm-2 ">
+                <div class="py-5 px-0
+                pl-2 sticky-top">                                
+                    {% block sidebar%} {% endblock%}
+                </div>
+            </div> 
+            <!-- Content -->
+            <div class="col-lg-8 mt-5">
+                <div class="background">
+                    <div class="jumbotron ">
+                        <h1 class="display-4">{% block jumpo_title%}{% endblock%}</h1>
+                        <p class="lead">{% block jumbo_text%}{% endblock %}</p>
+                        <hr class="my-4">
+                        <div>
+                        {% block jumbo_content%}{% endblock%}
+                         </div>
+                        <div>
+                            {% block jumbo_btn %}{% endblock%} 
+                        </div>
+                    </div>
+                    <!-- Blocl content -->
+                    <div class="content">
+                        {% block content%} {% endblock%}
+                    </div>                                                      
+                    
+                </div>                                       
+            
+            </div>
+        </div>
+        
+        <!-- Footer  -->
+        <footer class="container">
+            {% block footer%} {% endblock%}
+        </footer>                 
+         
+    </body>
+</html>

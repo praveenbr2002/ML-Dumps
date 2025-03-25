@@ -1,0 +1,7 @@
+###### TO CHECK THE VIRTUAL ENVIRONMENT AVAILABLE AT YOUR LINUX SYATEM ############################
+locate -b '\activate' | grep "/home"
+
+#### TO ACTIVATE THE NEW VENV IN LINUX ############
+. venv/bin/activate
+
+
